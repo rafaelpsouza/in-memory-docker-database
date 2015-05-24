@@ -4,6 +4,8 @@ import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerResponse;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.Ports;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,16 +24,23 @@ public class DockerPostgresql implements InMemoryDatabase {
 
     @Override
     public DatabaseStatus start() {
-        int databasePort = config.getPort().orElse(5432);
-        Ports portBindings = new Ports();
-        portBindings.bind(ExposedPort.tcp(5432), Ports.Binding(databasePort));
-        CreateContainerResponse createContainerResponse = dockerClient.createContainerCmd("postgres")
-                .withPortBindings(portBindings)
-                .exec();
-                
-        containerId = createContainerResponse.getId();
-        dockerClient.startContainerCmd(containerId).exec();
-        return new DatabaseStatus(true, containerId, databasePort);        
+        try {
+            int databasePort = config.getPort().orElse(5432);
+            Ports portBindings = new Ports();
+            portBindings.bind(ExposedPort.tcp(5432), Ports.Binding(databasePort));
+            CreateContainerResponse createContainerResponse = dockerClient.createContainerCmd("postgres")
+                    .withPortBindings(portBindings)
+                    .exec();
+            
+            containerId = createContainerResponse.getId();
+            dockerClient.startContainerCmd(containerId).exec();
+            Thread.sleep(4000); //Time waiting database, change fora a database check     
+            return new DatabaseStatus(true, containerId, databasePort);
+        } catch (InterruptedException ex) {
+            //TODO Log
+            //Logger.getLogger(DockerPostgresql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new DatabaseStatus(false);
     }
 
     @Override

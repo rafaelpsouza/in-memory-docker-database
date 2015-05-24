@@ -3,6 +3,7 @@ package br.eng.rafaelsouza;
 import br.eng.rafaelsouza.imdb.junit.DockerDatabaseConfig;
 import br.eng.rafaelsouza.imdb.junit.DockerDatabaseConfig.DatabaseType;
 import br.eng.rafaelsouza.imdb.junit.DockerDatabaseRunner;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -14,6 +15,10 @@ import org.junit.runner.RunWith;
 @DockerDatabaseConfig(type = DatabaseType.POSTGRES, port = 5432)
 public class SomeTest {
     
+    @BeforeClass
+    public static void before(){
+        System.out.println("BEFORE CLASS");
+    }
    
     @Test
     public void test1() {
