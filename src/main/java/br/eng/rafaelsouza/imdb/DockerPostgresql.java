@@ -1,6 +1,5 @@
 package br.eng.rafaelsouza.imdb;
 
-import br.eng.rafaelsouza.imdb.DatabaseConfig.DatabaseType;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerResponse;
 import com.github.dockerjava.api.model.ExposedPort;
@@ -22,16 +21,17 @@ public class DockerPostgresql implements InMemoryDatabase {
     }
 
     @Override
-    public void start() {
-        ExposedPort tcp5432 = ExposedPort.tcp(5432);
+    public DatabaseStatus start() {
+        int databasePort = config.getPort().orElse(5432);
         Ports portBindings = new Ports();
-        System.out.println("################## PORT: "+config.getPort());
-        portBindings.bind(tcp5432, Ports.Binding(config.getPort().orElse(5432)));
-        CreateContainerResponse container = dockerClient.createContainerCmd("postgres")
+        portBindings.bind(ExposedPort.tcp(5432), Ports.Binding(databasePort));
+        CreateContainerResponse createContainerResponse = dockerClient.createContainerCmd("postgres")
                 .withPortBindings(portBindings)
                 .exec();
-        containerId = container.getId();
+                
+        containerId = createContainerResponse.getId();
         dockerClient.startContainerCmd(containerId).exec();
+        return new DatabaseStatus(true, containerId, databasePort);        
     }
 
     @Override

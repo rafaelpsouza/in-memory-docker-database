@@ -14,6 +14,7 @@ public class DockerDatabaseManager {
 
     public static void startDb(DatabaseConfig databaseConfig) {
         if (dbInstance == null) {
+            System.out.println("#################### startign database");
             dbInstance = new DockerPostgresql(DockerClientBuilder.getInstance("http://localhost:2375").build(), databaseConfig);
             dbInstance.start();
         }

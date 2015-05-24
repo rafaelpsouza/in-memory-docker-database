@@ -1,6 +1,7 @@
 package br.eng.rafaelsouza;
 
 import br.eng.rafaelsouza.imdb.junit.DockerDatabaseConfig;
+import br.eng.rafaelsouza.imdb.junit.DockerDatabaseConfig.DatabaseType;
 import br.eng.rafaelsouza.imdb.junit.DockerDatabaseRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,7 @@ import org.junit.runner.RunWith;
  * @author Rafael Souza
  */
 @RunWith(DockerDatabaseRunner.class)
-@DockerDatabaseConfig(type = DockerDatabaseConfig.DatabaseType.POSTGRES, port = 5432)
+@DockerDatabaseConfig(type = DatabaseType.POSTGRES, port = 5432)
 public class SomeTest {
     
    

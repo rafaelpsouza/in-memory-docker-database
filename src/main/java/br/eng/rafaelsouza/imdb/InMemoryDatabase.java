@@ -6,7 +6,7 @@ package br.eng.rafaelsouza.imdb;
  */
 public interface InMemoryDatabase {
     
-    public void start();
+    public DatabaseStatus start();
     public void migrate(Migration migration);
     public void stop();
     
