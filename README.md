@@ -8,13 +8,19 @@ In Memory Docker Database is a Java library that allow you to easily launch a do
 
 ## Overview
 
-![Alt text](https://cacoo.com/diagrams/KJIYGq2xh7iCL33h-D6350.png?t=5)
+![Alt text](https://cacoo.com/diagrams/KJIYGq2xh7iCL33h-D6350.png)
 
 
 ## Setup
 
-#### Enable Docker remote REST API:
+#### Pull the database images
+```sh
+sudo docker pull postgres
 ```
+
+
+#### Enable Docker remote REST API:
+```sh
 $ echo "DOCKER_OPTS='-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock'" > /etc/default/docker
 $ service docker restart
 ```
@@ -23,7 +29,7 @@ $ service docker restart
 
 #### Maven dependencies:
 
-```
+```xml
 <repositories>
 	<repository>
     	<id>in-memory-docker-database-mvn-repo</id>
@@ -37,7 +43,7 @@ $ service docker restart
 ```
 
 
-```
+```xml
 <dependency>
     <groupId>br.eng.rafaelsouza</groupId>
     <artifactId>in-memory-docker-database</artifactId>
@@ -46,7 +52,33 @@ $ service docker restart
 </dependency>
 ```
 
+
+## How to use
+
+Basically you need to add two annotations in your tests:
+
+```java
+@RunWith(DockerDatabaseRunner.class)
+@DockerDatabaseConfig(type = DatabaseType.POSTGRES, port = 5432)
+public class BlogRepositoryTest {
+```
+
+* **@RunWith(DockerDatabaseRunner.class)**: The test runner that will enable test listeners (start database before start tests and stop afterwards)
+* **@DockerDatabaseConfig(type = DatabaseType.POSTGRES, port = 5432)**: The database configuration. **type** is the database that you want to launch (only Postgres 9.4 is supported at this monent). **port** the port that the database you listen for connections.
+
+You can also see the example projects here:
+[examples][3]
+
+
+
+
+### How to contribute
+
+Fell free to open issues and pull requests or send me an [e-mail](3). 
+
+
+
 [1]: http://www.martinfowler.com/bliki/InMemoryTestDatabase.html
 [2]: http://infoslack.com/devops/exploring-docker-remote-api/
-
-    
+[3]: https://github.com/rafaelpsouza/in-memory-docker-database/tree/master/examples/
+[4]: rafael.bnc@gmail.com
