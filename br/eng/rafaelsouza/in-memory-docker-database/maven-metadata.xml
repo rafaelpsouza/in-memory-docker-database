@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>br.eng.rafaelsouza</groupId>
+  <artifactId>in-memory-docker-database</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20150526161714</lastUpdated>
+  </versioning>
+</metadata>
