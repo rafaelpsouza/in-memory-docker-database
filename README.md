@@ -74,7 +74,7 @@ You can also see the example projects here:
 
 ### How to contribute
 
-Fell free to open issues and pull requests or send me an [e-mail][4]. 
+Fell free to open issues and pull requests or send me an [e-mail][4] if you want to code it. 
 
 
 
