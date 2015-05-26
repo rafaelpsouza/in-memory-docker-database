@@ -81,4 +81,4 @@ Fell free to open issues and pull requests or send me an [e-mail][4].
 [1]: http://www.martinfowler.com/bliki/InMemoryTestDatabase.html
 [2]: http://infoslack.com/devops/exploring-docker-remote-api/
 [3]: https://github.com/rafaelpsouza/in-memory-docker-database/tree/master/examples/
-[4]: mailto:user@example.com
+[4]: mailto:rafael.bnc@gmail.com
