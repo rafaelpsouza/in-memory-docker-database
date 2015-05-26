@@ -7,7 +7,7 @@ In Memory Docker Database is a Java library that allow you to easily launch a do
 
 ## Overview
 
-![Alt text](https://cacoo.com/diagrams/KJIYGq2xh7iCL33h-D6350.png)
+![Alt text](https://cacoo.com/diagrams/KJIYGq2xh7iCL33h-D6350.png?t=1)
 
 
 [1]: http://www.martinfowler.com/bliki/InMemoryTestDatabase.html
