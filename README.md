@@ -74,7 +74,7 @@ You can also see the example projects here:
 
 ### How to contribute
 
-Fell free to open issues and pull requests or send me an [e-mail](3). 
+Fell free to open issues and pull requests or send me an [e-mail](4). 
 
 
 
@@ -82,3 +82,5 @@ Fell free to open issues and pull requests or send me an [e-mail](3).
 [2]: http://infoslack.com/devops/exploring-docker-remote-api/
 [3]: https://github.com/rafaelpsouza/in-memory-docker-database/tree/master/examples/
 [4]: mailto:user@example.com
+
+    
